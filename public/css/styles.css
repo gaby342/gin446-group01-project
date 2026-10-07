@@ -31,4 +31,4 @@ section { margin-bottom: 2.5rem; scroll-margin-top: 1rem; }
 /* TODO 5: Cards: wrapping flex container, gap:1.25rem, stretch alignment. */
 /* TODO 6: Each card: flex:1 1 16rem; min-width:0; nested flex column. */
 /* TODO 7: Pin card links with margin-top:auto; align-self:flex-start. */
-/* TODO 8: Footer: wrapping flex row; space-between; gap:1rem. */
+/* TODO 8: Footer: wrapping flex row; space-between; gap:1rem . */
