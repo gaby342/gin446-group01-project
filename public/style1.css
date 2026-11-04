@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    min-height: 75px;
+    align-items: center;
+    margin-top:3rem;
+    margin-bottom: 5rem;
+    background-color: indigo;
+    color: white;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    background-color: tomato;
+}
+
+.card {
+
+    min-width: 0;
+    overflow-wrap: anywhere;
+
+}
+
