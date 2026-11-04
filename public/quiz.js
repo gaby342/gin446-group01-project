@@ -88,7 +88,7 @@ score= score * 100 / questions.length;
 function getMessage(score) {
   if (score === 100) {
     return "Excellent! You master the basics.";
-  } else if (score > 60 && score < 100) {
+  } else if (score >= 60 && score < 100) {
     return "Good job, review the questions you missed.";
   } else {
     return "Review Chapter 6 and try again.";
