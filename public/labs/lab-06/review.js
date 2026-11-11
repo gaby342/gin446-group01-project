@@ -86,9 +86,11 @@ function collectData() {
         return option.value;
       });
       value = selected.join(", ");
-    } else if (field.type === "radio") {
+    } else if (name === "graduation") {
       const checkedRadio = form.querySelector('input[name="' + name + '"]:checked');
       value = checkedRadio ? checkedRadio.value : "";
+    } else if (name === "consent") {
+      value = field.checked ? "Yes" : "No";
     } else if (field.type === "checkbox") {
       value = field.checked ? field.value : "";
     } else {
