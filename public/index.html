@@ -3,68 +3,44 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CampusConnect | Group 01</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <meta name="description" content="GIN446 lab sessions and class work by Group 01.">
+  <title>GIN446 | Lab Directory</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
-  <header class="site-header container">
-    <a class="brand" href="#home">CampusConnect - Group 01 - Version 2</a>
-    <nav aria-label="Main navigation">
-      <ul class="nav-list">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#team">Team</a></li>
-      </ul>
-    </nav>
-    <a class="button" href="#services">Explore services</a>
-  </header>
-  <main id="main" class="container">
-    <section class="hero" id="home" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">GIN446 · Group 01 · Milestone 01</p>
-        <h1 id="hero-title">Campus services in one place</h1>
-        <p>Find a study space, join a workshop, or discover student support. This homepage is our first project milestone.</p>
-        <a class="button" href="#services">Browse services</a>
-      </div>
-      <aside class="project-summary" aria-labelledby="summary-title">
-        <h2 id="summary-title">Project status</h2>
-        <p>Session 1: semantic HTML and Flexbox layout.</p>
-        <p>Future sessions will add filtering, real data, and a back end.</p>
-      </aside>
+  <main class="container">
+    <header class="hero">
+      <p class="eyebrow">GIN446 · Web Programming</p>
+      <h1>Lab Sessions</h1>
+      <p class="intro">Choose a session to open its work.</p>
+    </header>
+    <section class="lab-grid" aria-label="Lab sessions">
+      <article class="lab-card">
+        <p class="session">Session 1 · Project milestone</p>
+        <h2>CampusConnect</h2>
+        <p>Semantic HTML and Flexbox layout for the group project.</p>
+        <a class="button" href="labs/campus-connect/">Open session</a>
+      </article>
+      <article class="lab-card">
+        <p class="session">Lab 04 · CSS Grid</p>
+        <h2>Responsive Grid</h2>
+        <p>A six-card layout that changes columns at responsive breakpoints.</p>
+        <a class="button" href="labs/lab-04/">Open lab</a>
+      </article>
+      <article class="lab-card">
+        <p class="session">Grid practice</p>
+        <h2>Auto-fit Grid</h2>
+        <p>A second Grid exercise using auto-fit and a minimum card width.</p>
+        <a class="button" href="labs/grid/">Open lab</a>
+      </article>
+      <article class="lab-card">
+        <p class="session">Lab 05 · JavaScript</p>
+        <h2>JavaScript Basics Quiz</h2>
+        <p>Answer the questions and check your score.</p>
+        <a class="button" href="labs/lab-05/">Open lab</a>
+      </article>
     </section>
-    <section id="services" aria-labelledby="services-title">
-      <h2 id="services-title">Featured services</h2>
-      <div class="cards">
-        <article class="card">
-          <p class="tag">Study</p><h3>Study spaces</h3>
-          <p>Discover quiet places to work.</p>
-          <a class="button" href="#study-details">Read study details</a>
-        </article>
-        <article class="card">
-          <p class="tag">Skills</p><h3>Engineering workshops</h3>
-          <p>Explore hands-on sessions covering electronics, programming, and design. Workshops help students develop practical skills together.</p>
-          <a class="button" href="#workshop-details">Read workshop details</a>
-        </article>
-        <article class="card">
-          <p class="tag">Support</p><h3>Student support</h3>
-          <p>Find academic guidance and support for your next project.</p>
-          <a class="button" href="#support-details">Read support details</a>
-        </article>
-      </div>
-    </section>
-    <section class="details" aria-labelledby="details-title">
-      <h2 id="details-title">Service information</h2>
-      <h3 id="study-details">Study spaces</h3><p>Example service: library reading rooms. Replace with verified group content.</p>
-      <h3 id="workshop-details">Engineering workshops</h3><p>Example service: introductory web programming workshops.</p>
-      <h3 id="support-details">Student support</h3><p>Example service: project mentoring. Booking will be a later milestone.</p>
-    </section>
-    <section id="team" aria-labelledby="team-title">
-      <h2 id="team-title">Our team</h2>
-      <p>Replace this text with first names or approved display names and each member's contribution.</p>
-    </section>
+    <footer><p>GIN446 · Group 01</p></footer>
   </main>
-  <footer class="site-footer container"><p>CampusConnect · Group 01</p><p>Built with HTML and CSS</p></footer>
-  
 </body>
 </html>
