@@ -1,0 +1,43 @@
+/* GIN446 – Chapter 7 lab 06 – provided stylesheet (you do not need to modify it).
+   Classes used by review.js:  .open (show the review panel)  .hidden (hide the form) */
+
+* { box-sizing: border-box; }
+html { background: #eef1fb; }
+body { margin: 0; padding: 24px 16px; font-family: Arial, Helvetica, sans-serif; color: #1b1e3f; background: #eef1fb; }
+
+.card { max-width: 680px; margin: 0 auto; padding: 26px 30px; background: #fff; border-radius: 14px; box-shadow: 0 6px 24px rgba(27, 30, 63, .12); }
+.course { margin: 0; font-size: 12px; font-weight: bold; letter-spacing: 1px; color: #e8822a; text-transform: uppercase; }
+h1 { margin: 6px 0 16px; font-size: 26px; }
+
+fieldset { margin: 0 0 16px; padding: 12px 16px 14px; border: 1px solid #d5d9ec; border-radius: 10px; }
+legend { padding: 0 6px; font-weight: bold; color: #4451c8; }
+label { display: block; margin: 10px 0 4px; font-weight: bold; font-size: 14px; }
+.hint { font-weight: normal; color: #5f6486; font-size: 12px; }
+input, select, textarea { width: 100%; padding: 8px 10px; font: 15px Arial, sans-serif; border: 1px solid #c9cee6; border-radius: 6px; }
+select[multiple] { padding: 4px; }
+.group-title { margin: 12px 0 4px; font-weight: bold; font-size: 14px; }
+.options label, .consent { display: inline-flex; align-items: center; gap: 6px; margin: 4px 14px 4px 0; font-weight: normal; }
+.options input, .consent input { width: auto; }
+.consent { display: flex; margin-top: 12px; }
+
+/* invalid fields are outlined after the user has tried to submit */
+input:user-invalid, select:user-invalid { border-color: #b3261e; background: #fde8e7; }
+
+button { padding: 11px 20px; font-size: 15px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; }
+.btn-primary { color: #fff; background: #4451c8; }
+.btn-primary:hover { background: #353fa6; }
+.btn-secondary { color: #1b1e3f; background: #e7e9f5; }
+.btn-secondary:hover { background: #d5d9ec; }
+
+/* ---- review panel ---- */
+.review-panel { display: none; padding: 18px 20px; border: 2px solid #4451c8; border-radius: 12px; background: #f6f7fd; }
+.review-panel.open { display: block; }         /* ◄ added / removed by review.js */
+.review-panel h2 { margin: 0 0 4px; font-size: 20px; }
+.review-intro { margin: 0 0 12px; color: #5f6486; font-size: 14px; }
+.review-list { display: grid; grid-template-columns: 160px 1fr; gap: 6px 14px; margin: 0 0 16px; }
+.review-list dt { font-weight: bold; color: #5f6486; }
+.review-list dd { margin: 0; }
+.review-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+.hidden { display: none; }                      /* ◄ added / removed by review.js */
+

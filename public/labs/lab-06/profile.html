@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <p class="course">GIN446 · Chapter 7 - JavaScript Part 2 · Lab 06</p>
+    <h1>Student Profile</h1>
+
+    <!-- novalidate: the browser does not block the submission by itself.
+         YOUR JavaScript decides when to validate (checkValidity / reportValidity). -->
+    <form id="profile-form" action="confirmation.html" method="get" novalidate>
+
+      <fieldset>
+        <legend>Identity</legend>
+        <label for="fullname">Full name</label>
+        <input id="fullname" name="fullname" required minlength="3">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="studentId">Student ID <span class="hint">(8 digits)</span></label>
+        <input id="studentId" name="studentId" required pattern="[0-9]{8}" title="8 digits, for example 20231234">
+
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" required min="17" max="70">
+      </fieldset>
+
+      <fieldset>
+        <legend>Studies</legend>
+        <label for="major">Major</label>
+        <select id="major" name="major" required>
+          <option value="">— choose your major —</option>
+          <option value="computer">Computer Engineering</option>
+          <option value="electrical">Electrical Engineering</option>
+          <option value="mechanical">Mechanical Engineering</option>
+          <option value="civil">Civil Engineering</option>
+        </select>
+
+        <p class="group-title">Expected graduation</p>
+        <div class="options">
+          <label><input type="radio" name="graduation" value="spring" required> Spring</label>
+          <label><input type="radio" name="graduation" value="summer"> Summer</label>
+          <label><input type="radio" name="graduation" value="fall"> Fall</label>
+        </div>
+
+        <p class="group-title">Areas of experience</p>
+        <div class="options">
+          <label><input type="checkbox" name="skills" value="programming"> Programming</label>
+          <label><input type="checkbox" name="skills" value="embedded"> Embedded Systems</label>
+          <label><input type="checkbox" name="skills" value="ai"> AI / Machine Learning</label>
+          <label><input type="checkbox" name="skills" value="networks"> Computer Networks</label>
+        </div>
+
+        <label for="software">Software you use <span class="hint">(Ctrl/Cmd + click to select several)</span></label>
+        <select id="software" name="software" multiple size="4">
+          <option value="matlab">MATLAB</option>
+          <option value="simulink">Simulink</option>
+          <option value="labview">LabVIEW</option>
+          <option value="ltspice">LTspice</option>
+          <option value="solidworks">SolidWorks</option>
+          <option value="proteus">Proteus</option>
+          <option value="wireshark">Wireshark</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>About you</legend>
+        <label for="bio">Short bio <span class="hint">(optional, 300 characters max)</span></label>
+        <textarea id="bio" name="bio" maxlength="300" rows="3"></textarea>
+
+        <label class="consent">
+          <input type="checkbox" id="consent" name="consent" value="yes" required>
+          I confirm that the information above is correct.
+        </label>
+      </fieldset>
+
+      <button type="submit" class="btn-primary">Submit Profile</button>
+    </form>
+
+    <!-- REVIEW PANEL: hidden by default (CSS), shown by adding the class "open" -->
+    <section id="review" class="review-panel">
+      <h2>Review your profile</h2>
+      <p class="review-intro">Check your answers. <strong>Edit</strong> to change them, or <strong>Confirm &amp; Submit</strong> to send them.</p>
+      <dl id="review-list" class="review-list"></dl>
+      <div class="review-actions">
+        <button type="button" id="edit-btn" class="btn-secondary">Edit</button>
+        <button type="button" id="confirm-btn" class="btn-primary">Confirm &amp; Submit</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="review.js"></script>
+</body>
+</html>
+

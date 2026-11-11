@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profile Received</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 18px; }
+    th, td { padding: 8px 10px; border-bottom: 1px solid #d5d9ec; text-align: left; font-size: 14px; }
+    th { width: 170px; color: #5f6486; }
+    .ok { color: #1f7a45; }
+    .note { color: #5f6486; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <p class="course">GIN446 · Chapter 7 · Lab · Server response</p>
+    <h1 class="ok">Profile received ✔</h1>
+    <p class="note">This page plays the role of the server: it displays the data it received from the form.</p>
+    <table id="received"></table>
+    <a href="profile.html">← Back to the form</a>
+  </main>
+
+  <script>
+    /* PROVIDED – simulates the server response. Do not modify.
+       The form is sent with method="get": the data arrives in the URL (?fullname=...&skills=...). */
+    const params = new URLSearchParams(window.location.search);
+    const table = document.getElementById("received");
+    const names = [...new Set(params.keys())];          // each field name once
+
+    if (names.length === 0) {
+      table.innerHTML = "<tr><td>No data received.</td></tr>";
+    }
+    names.forEach(function (name) {
+      const row = document.createElement("tr");
+      const th = document.createElement("th");
+      const td = document.createElement("td");
+      th.textContent = name;
+      td.textContent = params.getAll(name).join(", ") || "(empty)";   // several values for skills / software
+      row.appendChild(th);
+      row.appendChild(td);
+      table.appendChild(row);
+    });
+  </script>
+</body>
+</html>
+

@@ -1,79 +1,64 @@
-/* GIN446 – Chapter 6 lab05 – JavaScript Basics Quiz
-   This stylesheet is provided. You do not need to modify it for the main tasks.
-   The classes used by your JavaScript are marked with  ◄ used in quiz.js  */
-
+:root {
+  color-scheme: light;
+  --ink: #17243b;
+  --muted: #58677e;
+  --accent: #253eaa;
+  --paper: #f4f7fc;
+  --line: #d7dfec;
+}
 * { box-sizing: border-box; }
-
-html { background: #6b83d1; }
-
 body {
   margin: 0;
-  padding: 24px 16px;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #c0a7a7;
-  color: #1b1e3f;
   min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 85% 5%, #dce7ff 0, transparent 34rem),
+    var(--paper);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
 }
-
-.card {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 28px 32px;
-  background: #b6b9c2;
-  border-radius: 14px;
-  box-shadow: 0 6px 24px rgba(27, 30, 63, 0.12);
+.container { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; }
+.hero { padding: clamp(3rem, 9vw, 6rem) 0 2rem; }
+.eyebrow, .session {
+  color: var(--accent);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
 }
-
-header { margin-bottom: 18px; }
-.course { margin: 0; font-size: 12px; font-weight: bold; letter-spacing: 1px; color: #e8822a; text-transform: uppercase; }
-h1 { margin: 6px 0 4px; font-size: 28px; }
-.subtitle { margin: 0; color: #5f6486; }
-
-/* one question block  ◄ used in quiz.js */
-.question {
-  margin: 16px 0;
-  padding: 16px 18px;
-  border: 1px solid #d5d9ec;
-  border-radius: 10px;
-  background: #f8f9fd;
+.eyebrow { margin: 0 0 .75rem; }
+h1 { margin: 0; font-size: clamp(2.5rem, 7vw, 4.6rem); line-height: 1.04; letter-spacing: -.04em; }
+.intro { margin: 1rem 0 0; color: var(--muted); font-size: 1.15rem; }
+.lab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 1rem; padding: 1rem 0 3rem; }
+.lab-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 245px;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 12px 30px rgba(23,36,59,.06);
 }
-
-/* the question text  ◄ used in quiz.js */
-.question-text { margin: 0 0 10px; font-weight: bold; }
-
-/* one choice: the whole row is clickable  ◄ used in quiz.js */
-.choice {
-  display: block;
-  margin: 6px 0;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
+.session { margin: 0 0 .75rem; font-size: .7rem; }
+.lab-card h2 { margin: 0; font-size: 1.35rem; }
+.lab-card p:not(.session) { margin: .65rem 0 1.25rem; color: var(--muted); }
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  margin-top: auto;
+  padding: .65rem 1rem;
+  border-radius: .6rem;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
 }
-.choice:hover { background: #e6e9f7; }
-.choice input { margin-right: 8px; }
-
-.btn {
-  display: block;
-  width: 100%;
-  margin: 20px 0 0;
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  background: #c92828;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.btn:hover { background: #353fa6; }
-
-/* the result area */
-#result { margin-top: 20px; }
-.score { font-size: 22px; font-weight: bold; margin: 0 0 4px; }      /* ◄ used in quiz.js */
-.message { margin: 0 0 14px; color: #5f6486; }                       /* ◄ used in quiz.js */
-.line { margin: 6px 0; padding: 8px 12px; border-radius: 8px; }      /* ◄ used in quiz.js */
-.correct { background: #e3f4e8; color: #1f7a45; }                    /* ◄ used in quiz.js */
-.wrong { background: #fde8e7; color: #b3261e; }                      /* ◄ used in quiz.js */
-.unanswered { background: #fdf1e7; color: #a15a12; }                 /* ◄ used in quiz.js */
-
-.hint { padding: 14px; border: 2px dashed #e8822a; border-radius: 10px; color: #a15a12; }
+.button:hover { background: #172c83; }
+.button:focus-visible, a:focus-visible { outline: 3px solid #ef9b43; outline-offset: 3px; }
+footer { border-top: 1px solid var(--line); padding: 1rem 0 2rem; color: var(--muted); }
+footer p { margin: 0; }
+.directory-link { padding: .75rem 1rem; }
+.directory-link a { color: #253eaa; font-weight: 700; }
