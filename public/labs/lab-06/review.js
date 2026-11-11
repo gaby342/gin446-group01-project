@@ -26,15 +26,6 @@ const confirmBtn = document.getElementById("confirm-btn");
 form.addEventListener("submit", function(event) {
   event.preventDefault();
 
-  const skillInputs = form.querySelectorAll('input[name="skills"]');
-  const hasSkill = form.querySelector('input[name="skills"]:checked');
-  skillInputs[0].setCustomValidity(hasSkill ? "" : "Select at least one area of experience.");
-
-  const software = form.elements.software;
-  software.setCustomValidity(
-    software.selectedOptions.length > 0 ? "" : "Select at least one software option."
-  );
-
   if (!form.checkValidity()) {
     form.reportValidity();
     return;
