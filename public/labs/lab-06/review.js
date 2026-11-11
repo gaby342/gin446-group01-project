@@ -107,7 +107,7 @@ function collectData() {
    Clear the list first. Then hide the form and open the panel (classList). */
 
 function showReview(rows) {
-  list.innerHTML = "";
+  list.textContent = "";
 
   rows.forEach(function(row) {
     const dt = document.createElement("dt");
