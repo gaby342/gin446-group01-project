@@ -22,8 +22,8 @@ const confirmBtn = document.getElementById("confirm-btn");
    - Listen to the "submit" event of the form.
    - Cancel its default action, so the page stays here.
    - If the form is not valid: show the browser's warnings and stop.
-   - If it is valid: showReview(collectData());                            */
-form.addEventListener("submit", (event) => {
+   - If it is valid: showReview(collectData());                               */
+form.addEventListener("submit", function(event) {
   event.preventDefault();
 
   if (!form.checkValidity()) {
@@ -36,8 +36,8 @@ form.addEventListener("submit", (event) => {
 
 /* TASK 3 – Collect every value
    Return an ARRAY of objects { label, value }, one per field, for example:
-     [ { label: "Full name", value: "Lea Haddad" },
-       { label: "Skills",    value: "programming, ai" }, ... ]
+      [ { label: "Full name", value: "Lea Haddad" },
+        { label: "Skills",    value: "programming, ai" }, ... ]
    Fields: fullname, email, studentId, age, major, graduation (radio),
            skills (checkboxes), software (multiple select), bio, consent.   */
 function collectData() {
@@ -69,7 +69,7 @@ function collectData() {
     "consent"
   ];
 
-  fieldNames.forEach((name) => {
+  fieldNames.forEach(function(name) {
     const field = form.elements[name];
 
     if (!field) return;
@@ -77,13 +77,17 @@ function collectData() {
     let value;
 
     if (name === "skills") {
-      const checked = [...form.querySelectorAll('input[name="skills"]:checked')].map((input) => input.value);
+      const checked = [...form.querySelectorAll('input[name="skills"]:checked')].map(function(input) {
+        return input.value;
+      });
       value = checked.join(", ");
     } else if (name === "software") {
-      const selected = [...field.selectedOptions].map((option) => option.value);
+      const selected = [...field.selectedOptions].map(function(option) {
+        return option.value;
+      });
       value = selected.join(", ");
     } else if (field.type === "radio") {
-      const checkedRadio = form.querySelector(`input[name="${name}"]:checked`);
+      const checkedRadio = form.querySelector('input[name="' + name + '"]:checked');
       value = checkedRadio ? checkedRadio.value : "";
     } else if (field.type === "checkbox") {
       value = field.checked ? field.value : "";
@@ -91,7 +95,7 @@ function collectData() {
       value = field.value;
     }
 
-    rows.push({ label: labels[name], value });
+    rows.push({ label: labels[name], value: value });
   });
 
   return rows;
@@ -105,7 +109,7 @@ function collectData() {
 function showReview(rows) {
   list.innerHTML = "";
 
-  rows.forEach((row) => {
+  rows.forEach(function(row) {
     const dt = document.createElement("dt");
     const dd = document.createElement("dd");
 
@@ -121,7 +125,7 @@ function showReview(rows) {
 }
 
 /* TASK 5 – Edit: close the panel and show the form again (no reload).      */
-editBtn.addEventListener("click", () => {
+editBtn.addEventListener("click", function() {
   panel.classList.remove("open");
   form.classList.remove("hidden");
 });
@@ -130,6 +134,6 @@ editBtn.addEventListener("click", () => {
 /* TASK 6 – Confirm & Submit: send the form to confirmation.html,
    WITHOUT firing the "submit" event again (no loop).                       */
 
-confirmBtn.addEventListener("click", () => {
+confirmBtn.addEventListener("click", function() {
   form.submit();
 });
