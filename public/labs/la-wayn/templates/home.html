@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% block title %}
+  La Wayn? — Pick together
+{% endblock %}
+{% block content %}
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">
+        <span class="live-dot">
+        </span>
+        LESS DEBATE, MORE DINNER
+      </span>
+      <h1>
+        So…
+        <em>
+          La Wayn?
+        </em>
+      </h1>
+      <p class="hero-lede">
+        The group chat has 47 opinions and still no plan. Let everyone swipe, and meet in the middle.
+      </p>
+      {% if not user %}
+        <a href="{{ url_for('signup') }}" class="button">
+          Get your group together
+          <span>
+            ↗
+          </span>
+        </a>
+        <p class="fine-print">
+          Free for your crew. No more “you pick.”
+        </p>
+      {% else %}
+        <a class="button" href="#groups">
+          Find your people
+          <span>
+            ↓
+          </span>
+        </a>
+      {% endif %}
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="art-orbit orbit-one">
+      </div>
+      <div class="art-orbit orbit-two">
+      </div>
+      <div class="art-card card-back">
+        <span>
+          🍜
+        </span>
+        <b>
+          noodles?
+        </b>
+      </div>
+      <div class="art-card card-front">
+        <span>
+          🥙
+        </span>
+        <b>
+          this one.
+        </b>
+        <small>
+          5 friends agree
+        </small>
+      </div>
+      <div class="art-stamp">
+        YES
+        <br>
+        × 5
+      </div>
+      <div class="art-spark spark-a">
+        ✳
+      </div>
+      <div class="art-spark spark-b">
+        ✦
+      </div>
+      <div class="art-pin">
+        ↗
+      </div>
+    </div>
+  </section>
+  {% if user %}
+    <section id="groups" class="section-block">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">
+            YOUR PEOPLE
+          </span>
+          <h2>
+            Pick a crew
+          </h2>
+        </div>
+        <span class="muted">
+          {{ user.name }}
+        </span>
+      </div>
+      <div class="group-grid">
+        {% for group in groups %}
+          <a class="group-card" href="{{ url_for('group_detail',group_id=group.id) }}">
+            <span class="group-avatar">
+              {{ group.name[:1]|upper }}
+            </span>
+            <span class="group-info">
+              <b>
+                {{ group.name }}
+              </b>
+              <small>
+                {{ group.member_count }}
+                member
+                {% if group.member_count != 1 %}
+                  s
+                {% endif %}
+                · code
+                {{ group.invite_code }}
+              </small>
+            </span>
+            <span class="arrow">
+              ↗
+            </span>
+          </a>
+        {% else %}
+          <div class="empty-card">
+            <div class="empty-icon">
+              ✳
+            </div>
+            <b>
+              Your next great meal starts with your people.
+            </b>
+            <span>
+              Create a group or join one with an invite code.
+            </span>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="forms-row">
+        <form class="inline-form" method="post" action="{{ url_for('create_group') }}">
+          <label for="group-name">
+            Start a friend group
+          </label>
+          <div class="input-action">
+            <input id="group-name" name="name" placeholder="e.g. The Thursday Crew" maxlength="60" required>
+            <button class="button">
+              Create group
+            </button>
+          </div>
+        </form>
+        <form class="inline-form" method="post" action="{{ url_for('join_group') }}">
+          <label for="invite-code">
+            Have an invite code?
+          </label>
+          <div class="input-action">
+            <input id="invite-code" name="invite_code" placeholder="Paste your group code" maxlength="12" required>
+            <button class="button button-dark">
+              Join
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  {% else %}
+    <section class="how">
+      <div>
+        <span class="step-no">
+          01
+        </span>
+        <b>
+          Drop a pin
+        </b>
+        <small>
+          Pick your neighborhood and filters.
+        </small>
+      </div>
+      <div>
+        <span class="step-no">
+          02
+        </span>
+        <b>
+          Swipe your own way
+        </b>
+        <small>
+          Everyone votes at their own pace.
+        </small>
+      </div>
+      <div>
+        <span class="step-no">
+          03
+        </span>
+        <b>
+          Go eat together
+        </b>
+        <small>
+          Unanimous yes? That's the spot.
+        </small>
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}

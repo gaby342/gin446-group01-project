@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% block title %}
+  Find dinner ·
+  {{ group.name }}
+{% endblock %}
+{% block head %}
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+{% endblock %}
+{% block content %}
+  <a class="back-link" href="{{ url_for('group_detail',group_id=group.id) }}">
+    ←
+    {{ group.name }}
+  </a>
+  <div class="finder-layout">
+    <section class="finder-panel">
+      <span class="eyebrow">
+        SET THE SCENE
+      </span>
+      <h1>
+        Where are we eating?
+      </h1>
+      <p class="muted">
+        Drop a pin, set the radius, and narrow the vibe.
+      </p>
+      <form id="search-form" action="{{ url_for('search_api',group_id=group.id) }}" method="post">
+        <label>
+          Session name
+          <input name="title" value="Dinner decision" maxlength="80" required>
+        </label>
+        <div class="form-grid">
+          <label>
+            Search radius
+            <select name="radius_m">
+              <option value="1000">
+                1 km
+              </option>
+              <option value="3000" selected>
+                3 km
+              </option>
+              <option value="5000">
+                5 km
+              </option>
+              <option value="10000">
+                10 km
+              </option>
+              <option value="20000">
+                20 km
+              </option>
+            </select>
+          </label>
+          <label>
+            Search location
+            <button type="button" id="locate" class="text-button">
+              Use my location ↗
+            </button>
+            <span id="location-label" class="location-label">
+              Click the map to drop a pin
+            </span>
+          </label>
+        </div>
+        <div id="map" class="map">
+        </div>
+        <input type="hidden" name="lat" id="lat">
+        <input type="hidden" name="lon" id="lon">
+        <fieldset>
+          <legend>
+            Any cuisine cravings?
+          </legend>
+          <div class="chip-grid">
+            {% for cuisine in ['lebanese','middle_eastern','italian','japanese','chinese','mexican','indian','american','french','thai','mediterranean','pizza','burger','korean','vegan'] %}
+              <label class="check-chip">
+                <input type="checkbox" name="cuisines" value="{{ cuisine }}">
+                <span>
+                  {{ cuisine|replace('_',' ')|title }}
+                </span>
+              </label>
+            {% endfor %}
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>
+            Diet & timing
+          </legend>
+          <div class="toggle-row">
+            <label class="switch-label">
+              <input type="checkbox" name="open_now" value="true">
+              <span class="switch">
+              </span>
+              <span>
+                <b>
+                  Open now
+                </b>
+                <small>
+                  Matches listed hours using your local time
+                </small>
+              </span>
+            </label>
+            <label class="switch-label">
+              <input type="checkbox" name="vegetarian" value="true">
+              <span class="switch">
+              </span>
+              <span>
+                <b>
+                  Vegetarian options
+                </b>
+                <small>
+                  Places tagged in OpenStreetMap
+                </small>
+              </span>
+            </label>
+            <label class="switch-label">
+              <input type="checkbox" name="halal" value="true">
+              <span class="switch">
+              </span>
+              <span>
+                <b>
+                  Halal
+                </b>
+                <small>
+                  Places tagged in OpenStreetMap
+                </small>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+        <div id="search-error" class="inline-error" role="alert">
+        </div>
+        <button class="button full" id="search-button">
+          Find the deck
+          <span>
+            ↗
+          </span>
+        </button>
+        <small class="attribution">
+          Restaurant listings from OpenStreetMap. Filters depend on community-contributed tags.
+        </small>
+      </form>
+    </section>
+    <aside class="finder-note">
+      <div class="note-graphic">
+        ⌖
+      </div>
+      <span class="eyebrow">
+        A LITTLE ADVICE
+      </span>
+      <h2>
+        Leave room for a surprise.
+      </h2>
+      <p>
+        Try a wider radius and let the shuffled deck bring a new favorite to the table.
+      </p>
+      <div class="note-divider">
+      </div>
+      <div class="mini-members">
+        {% for m in members %}
+          <span>
+            {{ m.name[:1]|upper }}
+          </span>
+        {% endfor %}
+        <small>
+          {{ group.name }}
+          is ready
+        </small>
+      </div>
+    </aside>
+  </div>
+{% endblock %}
+{% block scripts %}
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="{{ url_for('static',filename='js/map.js') }}"></script>
+{% endblock %}

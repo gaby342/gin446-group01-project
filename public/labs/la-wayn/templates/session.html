@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% block title %}
+  {{ data.session.title }}
+  · La Wayn?
+{% endblock %}
+{% block head %}
+  <meta name="session-id" content="{{ data.session.id }}">
+  <meta name="current-user" content="{{ session.get('user_id') }}">
+{% endblock %}
+{% block content %}
+  <a class="back-link" href="{{ url_for('group_detail',group_id=data.session.group_id) }}">
+    ←
+    {{ data.session.group_name }}
+  </a>
+  <section class="swipe-header">
+    <div>
+      <span class="eyebrow">
+        <span class="live-dot">
+        </span>
+        {{ 'QUICK RUNOFF' if data.session.state == 'runoff' else 'GROUP SWIPE SESSION' }}
+      </span>
+      <h1>
+        {{ data.session.title }}
+      </h1>
+      <p>
+        {{ data.members|length }}
+        people deciding together
+        <span class="member-dots">
+          {% for member in data.members %}
+            <i title="{{ member.name }}">
+              {{ member.name[:1]|upper }}
+            </i>
+          {% endfor %}
+        </span>
+      </p>
+    </div>
+    <div class="round-badge">
+      ROUND
+      <b>
+        {{ data.session.round_no }}
+      </b>
+    </div>
+  </section>
+  <section id="outcome" class="outcome hidden" aria-live="polite">
+  </section>
+  <section class="swipe-layout">
+    <aside class="vote-status">
+      <span class="eyebrow">
+        YOUR CREW
+      </span>
+      <div id="member-list">
+        {% for member in data.members %}
+          <div class="member-row" data-member="{{ member.id }}">
+            <span class="member-avatar">
+              {{ member.name[:1]|upper }}
+            </span>
+            <span>
+              {{ member.name }}
+              {% if member.id == session.get('user_id') %}
+                <small>
+                  (you)
+                {% endif %}
+              </small>
+            </span>
+            <span class="member-vote">
+              …
+            </span>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="vote-legend">
+        <span>
+          ♥ yes
+        </span>
+        <span>
+          … thinking
+        </span>
+      </div>
+      <div class="filter-summary">
+        <b>
+          Search settings
+        </b>
+        <small>
+          {{ data.session.radius_m }}
+          m away
+        </small>
+        <small>
+          Everyone swipes at their own pace. The deck updates live.
+        </small>
+      </div>
+    </aside>
+    <div class="deck-column">
+      <div class="deck-progress">
+        <span id="progress-label">
+          Loading deck…
+        </span>
+        <div class="progress-track">
+          <span id="progress-bar">
+          </span>
+        </div>
+      </div>
+      <div id="restaurant-card" class="restaurant-card">
+        <div class="card-art">
+          <div class="food-illustration">
+            🍽️
+          </div>
+          <span class="card-category">
+          </span>
+        </div>
+        <div class="restaurant-info">
+          <div class="rating-pill hidden">
+          </div>
+          <h2 class="restaurant-name">
+          </h2>
+          <p class="restaurant-cuisine">
+          </p>
+          <div class="restaurant-meta">
+          </div>
+          <a class="osm-link" target="_blank" rel="noopener">
+            View on OpenStreetMap ↗
+          </a>
+        </div>
+        <div class="swipe-actions">
+          <button class="vote-button no-button" data-vote="no" aria-label="Pass">
+            ×
+          </button>
+          <span>
+            PASS
+          </span>
+          <button class="vote-button yes-button" data-vote="yes" aria-label="Yes">
+            ♥
+          </button>
+          <span>
+            YES
+          </span>
+        </div>
+      </div>
+      <div id="empty-deck" class="empty-card hidden">
+        <b>
+          You're all caught up.
+        </b>
+        <span>
+          Waiting for the rest of your crew.
+        </span>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+{% block scripts %}
+  <script src="{{ url_for('static',filename='js/session.js') }}"></script>
+{% endblock %}

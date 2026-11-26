@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f5ef">
+    <title>
+      {% block title %}
+        La Wayn?
+      {% endblock %}
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="{{ url_for('home') }}">
+        <span class="brand-mark">
+          LW
+        </span>
+        <span>
+          La Wayn
+          <span class="brand-q">
+            ?
+          </span>
+        </span>
+      </a>
+      <nav>
+        {% if session.get('user_id') %}
+          <a href="{{ url_for('home') }}">
+            My groups
+          </a>
+          <span class="nav-name">
+            {{ (models_user_name if models_user_name else '') }}
+          </span>
+          <form action="{{ url_for('logout') }}" method="post">
+            <button class="nav-button">
+              Log out
+            </button>
+          </form>
+        {% else %}
+          <a href="{{ url_for('login') }}">
+            Log in
+          </a>
+          <a class="button button-small" href="{{ url_for('signup') }}">
+            Get started
+          </a>
+        {% endif %}
+      </nav>
+    </header>
+    <main class="page">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-stack">
+            {% for category,message in messages %}
+              <div class="flash {{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+      {% block content %}
+      {% endblock %}
+    </main>
+    <footer class="footer">
+      <span>
+        Made for the “where should we eat?” group chat.
+      </span>
+      <span>
+        Restaurant data © OpenStreetMap contributors
+      </span>
+    </footer>
+    {% block scripts %}
+    {% endblock %}
+  </body>
+</html>
