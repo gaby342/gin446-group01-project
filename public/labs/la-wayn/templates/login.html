@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+  Log in · La Wayn?
+{% endblock %}
+{% block content %}
+  <section class="auth-wrap">
+    <div class="auth-aside">
+      <span class="eyebrow">
+        WELCOME BACK
+      </span>
+      <h1>
+        Your table is waiting.
+      </h1>
+      <p>
+        Pick up where your group left off.
+      </p>
+    </div>
+    <form class="auth-card" method="post">
+      <h2>
+        Log in
+      </h2>
+      <label>
+        Email
+        <input type="email" name="email" autocomplete="email" required>
+      </label>
+      <label>
+        Password
+        <input type="password" name="password" autocomplete="current-password" required>
+      </label>
+      <button class="button full">
+        Log in
+      </button>
+      <p class="auth-switch">
+        New here?
+        <a href="{{ url_for('signup') }}">
+          Create an account
+        </a>
+      </p>
+    </form>
+  </section>
+{% endblock %}

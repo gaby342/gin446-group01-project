@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block title %}
+  {{ group.name }}
+  · La Wayn?
+{% endblock %}
+{% block content %}
+  <a class="back-link" href="{{ url_for('home') }}">
+    ← All groups
+  </a>
+  <section class="group-header">
+    <div>
+      <span class="eyebrow">
+        YOUR CREW ·
+        {{ members|length }}
+        MEMBERS
+      </span>
+      <h1>
+        {{ group.name }}
+      </h1>
+      <p>
+        Invite code
+        <span class="code-pill">
+          {{ group.invite_code }}
+        </span>
+        <button class="text-button" data-copy="{{ group.invite_code }}">
+          Copy
+        </button>
+      </p>
+    </div>
+    <div class="header-actions">
+      <a class="button button-outline" href="{{ url_for('favorites_page',group_id=group.id) }}">
+        ♡ Your ratings
+      </a>
+      <a class="button" href="{{ url_for('search_page',group_id=group.id) }}">
+        + Start a session
+      </a>
+    </div>
+  </section>
+  {% if active %}
+    <section class="active-session">
+      <div class="active-pulse">
+      </div>
+      <div>
+        <span class="eyebrow">
+          A DECISION IS IN PROGRESS
+        </span>
+        <h2>
+          {{ active.title }}
+        </h2>
+        <small>
+          {{ 'Runoff round' if active.state == 'runoff' else 'Swipe round' }}
+          · started
+          {{ active.created_at[:10] }}
+        </small>
+      </div>
+      <a class="button" href="{{ url_for('session_page',session_id=active.id) }}">
+        Join the swipes ↗
+      </a>
+    </section>
+  {% endif %}
+  <section class="section-block history-block">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">
+          THE GROUP MEMORY
+        </span>
+        <h2>
+          Session history
+        </h2>
+      </div>
+    </div>
+    {% if history %}
+      <div class="history-list">
+        {% for item in history %}
+          <div class="history-row">
+            <span class="history-icon">
+              {% if item.state == 'matched' %}
+                ✳
+              {% elif item.state == 'no_match' %}
+                ↻
+              {% else %}
+                ◷
+              {% endif %}
+            </span>
+            <div>
+              <b>
+                {{ item.title }}
+              </b>
+              <small>
+                {{ item.created_at[:10] }}
+                ·
+                {{ item.state|replace('_',' ')|title }}
+              </small>
+            </div>
+            <span class="history-match">
+              {{ item.match_name or ('No match yet' if item.state in ('voting','runoff') else 'No unanimous pick') }}
+            </span>
+            {% if item.state in ('voting','runoff') %}
+              <a href="{{ url_for('session_page',session_id=item.id) }}" class="text-button">
+                Open →
+              </a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-card compact">
+        <b>
+          Your first group decision is one session away.
+        </b>
+        <span>
+          Search nearby, shuffle the deck, and let everyone weigh in.
+        </span>
+      </div>
+    {% endif %}
+  </section>
+{% endblock %}
+{% block scripts %}
+  <script src="{{ url_for('static',filename='js/group.js') }}"></script>
+{% endblock %}

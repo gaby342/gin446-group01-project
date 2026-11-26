@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}
+  Join La Wayn?
+{% endblock %}
+{% block content %}
+  <section class="auth-wrap">
+    <div class="auth-aside">
+      <span class="eyebrow">
+        GOOD FOOD, GOOD PEOPLE
+      </span>
+      <h1>
+        Save the group chat.
+      </h1>
+      <p>
+        Make dinner decisions everyone can feel good about.
+      </p>
+    </div>
+    <form class="auth-card" method="post">
+      <h2>
+        Create your account
+      </h2>
+      <label>
+        Your name
+        <input name="name" autocomplete="name" maxlength="60" required>
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" autocomplete="email" required>
+      </label>
+      <label>
+        Password
+        <input type="password" name="password" autocomplete="new-password" minlength="8" required>
+        <small>
+          At least 8 characters.
+        </small>
+      </label>
+      <button class="button full">
+        Create account
+      </button>
+      <p class="auth-switch">
+        Already in?
+        <a href="{{ url_for('login') }}">
+          Log in
+        </a>
+      </p>
+    </form>
+  </section>
+{% endblock %}
